@@ -38,7 +38,9 @@ public class ControlListner implements ActionListener{
       FileNameExtensionFilter filter = new FileNameExtensionFilter("RDF", "rdf");
       chooser.setFileFilter(filter);
       chooser.showOpenDialog(null);
-      modelCollection.addRDFsFile(chooser.getSelectedFile().toString());
+      try{ 
+          modelCollection.addRDFsFile(chooser.getSelectedFile().toString(),true);
+       }  catch(NullPointerException e){ System.out.println("aucun fichier selectionner" );}
     }
 	
 	// réaction au clic sur le bouton quitter
