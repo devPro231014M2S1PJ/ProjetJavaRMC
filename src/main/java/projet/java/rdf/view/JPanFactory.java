@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class JPanFactory extends JPanel{
+	
 	private int width;
 	private int height;
 

@@ -24,10 +24,13 @@ import projet.java.rdf.model.ModelRDF;
 
 
 public class Indexation {
+	
 	public LinkedList<ModelRDF> listModel=new LinkedList<ModelRDF>();
+	
 	public Indexation(LinkedList<ModelRDF>listModel){
 		this.listModel=listModel;
 	}
+	
 	public static void addtoAgregatindex(ModelRDF model) throws IOException{
 		 File f=new File("C:/projetIndexation/agregatIndexation");
 		    Directory directory = FSDirectory.open(f);
@@ -69,20 +72,20 @@ public class Indexation {
   	    IndexWriter iwriter=new IndexWriter(directory,config);
   	    for(ModelRDF model:listModel){
   	       Statement stmt; // le triple
-  	  	   Resource  subject,pridicat; 
+  	  	   Resource  subject,predicat; 
   	  	   Literal literal;
   	  	   StmtIterator stmtIter=model.model.listStatements();
   	  	   while(stmtIter.hasNext()){
   		       stmt=stmtIter.next();	
   		       subject=stmt.getSubject();
-  		       pridicat=stmt.getPredicate();
-  		       try{ // si le model contient un literale
+  		       predicat=stmt.getPredicate();
+  		       try{ // si le model contient un literal
   		           literal=stmt.getLiteral();
   		           Document doc=new Document();
   		           doc.add(new Field("sujet", subject.toString(),TextField.TYPE_STORED));
-  		           doc.add(new Field("predicat", pridicat.getLocalName(),TextField.TYPE_STORED));
+  		           doc.add(new Field("predicat", predicat.getLocalName(),TextField.TYPE_STORED));
   		           doc.add(new Field("literal", literal.toString(),TextField.TYPE_STORED));
-  		          }catch(LiteralRequiredException e){}
+  		       }catch(LiteralRequiredException e){}
   		   }
   	    }
   	    iwriter.close();
@@ -94,18 +97,18 @@ public class Indexation {
    	    IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, new StandardAnalyzer());
    	    IndexWriter iwriter=new IndexWriter(directory,config);
    	       Statement stmt; // le triple
-   	  	   Resource  subject,pridicat; 
+   	  	   Resource  subject,predicat; 
    	  	   Literal literal;
    	  	   StmtIterator stmtIter=model.model.listStatements();
    	  	   while(stmtIter.hasNext()){
    		       stmt=stmtIter.next();	
    		       subject=stmt.getSubject();
-   		       pridicat=stmt.getPredicate();
-   		       try{ // si le model contient un literale
+   		       predicat=stmt.getPredicate();
+   		       try{ // si le model contient un literal
    		           literal=stmt.getLiteral();
    		           Document doc=new Document();
    		           doc.add(new Field("sujet", subject.toString(),TextField.TYPE_STORED));
-   		           doc.add(new Field("predicat", pridicat.getLocalName(),TextField.TYPE_STORED));
+   		           doc.add(new Field("predicat", predicat.getLocalName(),TextField.TYPE_STORED));
    		           doc.add(new Field("literal", literal.toString(),TextField.TYPE_STORED));
    		          }catch(LiteralRequiredException e){}
    		   }

@@ -44,9 +44,10 @@ public class ModelCollection {
 	public void putFirst(DefaultTableModel model){  
 		if(listModel.size()>0)this.listModel.get(0).putTriplet(model);
 	}
+	
 	// naviguer vers le modèle suivant
 	public void next(DefaultTableModel model){
-		if(this.nowModel<listModel.size()-1){
+		if(this.nowModel<this.listModel.size()-1){
 			this.nowModel++;
 			this.listModel.get(this.nowModel).putTriplet(model);
 		}

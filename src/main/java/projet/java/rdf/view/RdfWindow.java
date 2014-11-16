@@ -29,7 +29,7 @@ public class RdfWindow extends JFrame {
 	public DefaultTableModel modelSearch, modelParcourir;// le model d'affichage des données dans le mode 
 	private JTable tableauSearch, tableauParcourir;// les tables qui l'afficherons
 	private Object[][] dataSearch,dataParcourir; // les tableaux qui contiennent les données
-	private String[] dataModSearch = {"Path"},dataModConfig = {"Sujet", "Predicat", "Ressource"}; // les deux mode d'affichage
+	private String[] dataModSearch = {"Ressource"},dataModConfig = {"Sujet", "Predicat", "Ressource"}; // les deux mode d'affichage
 
 	/**
 	 * à la construction
@@ -42,9 +42,11 @@ public class RdfWindow extends JFrame {
 		buttSearch = buttFactory("Rechercher",new Color(255, 255, 255), new Color(254, 153, 0),200,36);
 		modelSearch = new DefaultTableModel(dataSearch,dataModSearch); 
 		modelParcourir = new DefaultTableModel(dataParcourir,dataModConfig); 
+
 		// definition des deux mode d'affiche des JTable 
 		tableauSearch = new JTable(modelSearch);
 		tableauSearch.setPreferredScrollableViewportSize(new Dimension(600, 650));
+
 		// creation des deux JTable
 		tableauParcourir = new JTable( modelParcourir);
 		tableauParcourir.setPreferredScrollableViewportSize(new Dimension(600, 400));
@@ -60,8 +62,8 @@ public class RdfWindow extends JFrame {
 	 */	 
 	private final JPanFactory createHeader(){
 		JPanFactory panHeader = new JPanFactory(new Color(40,170,226),950,70); // creation du conteneur globale de l'entête
-		JLabel labLogo = new JLabel(new ImageIcon("./src/logo.png"));          // creation du logo
-		JLabel labTitle = new JLabel(new ImageIcon("./src/app-tit.png"));      // creation du titre
+		JLabel labLogo = new JLabel(new ImageIcon("./src/main/java/logo.png"));          // creation du logo
+		JLabel labTitle = new JLabel(new ImageIcon("./src//main/java/app-tit.png"));      // creation du titre
 		JPanFactory panLogo= new JPanFactory(new Color(16,24,31), 200, 70);    //le conteneur du logo 
 		panLogo.add(labLogo);                                                  
 		panHeader.add(panLogo, BorderLayout.WEST);                    
