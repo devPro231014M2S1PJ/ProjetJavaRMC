@@ -9,12 +9,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import org.graphstream.ui.swingViewer.View;
+import org.graphstream.ui.swingViewer.Viewer;
 
 
 @SuppressWarnings("serial")
@@ -25,17 +29,22 @@ public class RdfWindow extends JFrame {
 	 */
 
 	public JTextField zoneSearch; // champs Text
-	public JButton buttParcourir,buttSearch,buttSuivant, buttPrecedent,buttQuitter; // les boutton du mode configuration 
+	public JButton buttParcourir,buttSearch,buttSuivant, buttPrecedent,buttQuitter,buttNorth,buttSouth,buttEst,buttWest,
+    buttZoom,buttDeZoom; // les boutton du mode configuration 
 	public DefaultTableModel modelSearch, modelParcourir;// le model d'affichage des données dans le mode 
 	private JTable tableauSearch, tableauParcourir;// les tables qui l'afficherons
 	private Object[][] dataSearch,dataParcourir; // les tableaux qui contiennent les données
 	private String[] dataModSearch = {"Ressource"},dataModConfig = {"Sujet", "Predicat", "Ressource"}; // les deux mode d'affichage
-
+	public View vi;
+	
 	/**
 	 * à la construction
 	 */
 
-	public RdfWindow() {
+	public RdfWindow(Viewer v) {
+		
+		v.enableAutoLayout();
+		this.vi=v.addDefaultView(false);;
 		zoneSearch=new JTextField(); // zone de teste qui est une variable global
 		zoneSearch.setBorder(new EmptyBorder(2,2,2,2));
 		zoneSearch.setSize(190, 20);
@@ -55,6 +64,12 @@ public class RdfWindow extends JFrame {
 		this.buttSuivant =buttFactory("suivant",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
 		this.buttParcourir =buttFactory("Parcourir",new Color(255, 255, 255), new Color(47, 204, 113),100,36);
 		this.buttQuitter= this.buttFactory("Quitter",new Color(255, 255, 255), new Color(226, 73, 57),60,50);  
+		this.buttNorth=buttFactory("HAUT",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
+	    this.buttEst=buttFactory("  >>",new Color(255, 255, 255), new Color(226, 73, 57),80,36);
+	    this.buttWest=buttFactory(" << ",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
+	    this.buttSouth=buttFactory("BAS",new Color(255, 255, 255), new Color(226, 73, 57),80,36);
+	    this.buttZoom=buttFactory(" + ",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
+	    this.buttDeZoom=buttFactory(" - ",new Color(255, 255, 255), new Color(226, 73, 57),80,36);
 	}
 
 	/**
@@ -123,11 +138,32 @@ public class RdfWindow extends JFrame {
 		panGestionFichier.add(this.createConfigMod(),BorderLayout.NORTH);
 		// appel a la fonction --->this.createConfigMod() qui construire et renvoi le conteneur en mode config
 		panGestionFichier.add(new JScrollPane(tableauParcourir),BorderLayout.SOUTH);
+		
+		JPanel p=new JPanel(new BorderLayout());
+		p.add(vi, BorderLayout.CENTER);
+		p.add(this.createGraphSurf(), BorderLayout.WEST);
+		
+		jTab.addTab("test", p);
 		jTab.addTab("Recherche dans un fichier", new JScrollPane(tableauSearch)); 
 		jTab.addTab("Parcourir des fichiers", panGestionFichier);
 		jTab.setSelectedIndex(0); // positionné le premier affichage a l'execution en mode recherche
 		return jTab;
 	}
+	
+	 /**
+	  * creation du conteneur pour le mode config
+	  */ 
+    private final JPanel createGraphSurf(){
+   	 JPanel panControl=new JPanel(new GridLayout(8,1));
+   	 panControl.add(buttNorth);
+		 panControl.add(buttSouth);
+		 panControl.add(buttWest);
+		 panControl.add(buttEst);
+		 panControl.add(buttZoom);
+		 panControl.add(buttDeZoom);
+		
+   	 return panControl;
+    }
 
 	/**
 	 * creation du conteneur pour le mode config
