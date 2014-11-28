@@ -28,11 +28,11 @@ public class ControlListner implements ActionListener{
 
 	public ControlListner(RdfWindow window,ModelCollection modelCollection, Indexation index, GlobalGraph graph) {
 
-		this.Window=window;                               // affecter la fenêtre dont les événement seront traité
+		this.Window=window;                               // affecter la fenï¿½tre dont les ï¿½vï¿½nement seront traitï¿½
 		this.modelCollection=modelCollection;             // affecter la collection des fichiers
 		this.indexation=index;
-		modelCollection.putFirst(window.modelParcourir);  // mettre le premier modèle RDF a affiché
-		// mettre sous écoute les composantes qui nous intéresse
+		modelCollection.putFirst(window.modelParcourir);  // mettre le premier modï¿½le RDF a affichï¿½
+		// mettre sous ï¿½coute les composantes qui nous intï¿½resse
 		this.graph=graph;
 		window.buttParcourir.addActionListener(this);     
 		window.buttSuivant.addActionListener(this);
@@ -48,18 +48,18 @@ public class ControlListner implements ActionListener{
 
 	}
 
-	// réaction a un évènement
+	// rï¿½action a un ï¿½vï¿½nement
 	public void actionPerformed(ActionEvent event) {
 		Object sourceOfEvent=event.getSource();
-		if(sourceOfEvent.equals(this.Window.buttSuivant)) this.reactionSuivant();// appel a la methode réaction au click sur suivant
+		if(sourceOfEvent.equals(this.Window.buttSuivant)) this.reactionSuivant();// appel a la methode rï¿½action au click sur suivant
 
-		else if(sourceOfEvent.equals(this.Window.buttPrecedent)) this.reactionPrecedant(); //appel a la méthode réaction au click sur précendent
+		else if(sourceOfEvent.equals(this.Window.buttPrecedent)) this.reactionPrecedant(); //appel a la mï¿½thode rï¿½action au click sur prï¿½cendent
 
-		else if(sourceOfEvent.equals(this.Window.buttParcourir))this.reactionParcourir();// appel a la méthode réaction au click sur parcourir
+		else if(sourceOfEvent.equals(this.Window.buttParcourir))this.reactionParcourir();// appel a la mï¿½thode rï¿½action au click sur parcourir
 
-		else if(sourceOfEvent.equals(this.Window.buttQuitter)) this.reactionQuitter();//appel a la méthode réaction au click sur quitter
+		else if(sourceOfEvent.equals(this.Window.buttQuitter)) this.reactionQuitter();//appel a la mï¿½thode rï¿½action au click sur quitter
 
-		else if(sourceOfEvent.equals(this.Window.buttSearch))this.reactionSearch(); //appel à la méthode réaction au click sur chercher
+		else if(sourceOfEvent.equals(this.Window.buttSearch))this.reactionSearch(); //appel ï¿½ la mï¿½thode rï¿½action au click sur chercher
         
         //else if(sourceOfEvent.equals(this.Window.buttZoom))this.reactionZoom();
 		
@@ -86,19 +86,18 @@ public class ControlListner implements ActionListener{
 	}
 
 	
-	// réaction au clic sur le bouton quitter
+	// rï¿½action au clic sur le bouton quitter
 	private final void reactionQuitter(){
 		int option = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment quitter l'application?.","Message de confirmation",JOptionPane.YES_NO_OPTION);
 		if(option == 0) System.exit(0);
 		else JOptionPane.getRootFrame().dispose();
 	}
 
-	// réaction au clic sur le bouton suivant
+	// rï¿½action au clic sur le bouton suivant
 	private final void reactionSuivant(){
 		this.modelCollection.next(this.Window.modelParcourir);
 	}
 
-	// réaction au clic sur le bouton précedent
 	private final void reactionPrecedant(){
 		this.modelCollection.previous(this.Window.modelParcourir);
 	}
@@ -115,39 +114,7 @@ public class ControlListner implements ActionListener{
 			}
 		}
 	}
-	
-	
-	/* 
-	private final void reactionZoom(){
-	   this.viewPersent/=1.2;
-	   Window.vi.setViewPercent(this.viewPersent);
-	}
-	   
-	private final void reactionDZoom(){
-	   this.viewPersent*=1.2;
-	   Window.vi.setViewPercent(this.viewPersent);
-	}
-	    
-	private final void reactionNorth(){
-	  this.viewCenterY+=0.1;
-	  Window.vi.setViewCenter(this.viewCenterY, this.viewCenterY, 0);
-	}
-	    
-	private final void reactionSouth(){
-	  this.viewCenterY-=0.1;
-	  Window.vi.setViewCenter(this.viewCenterX, this.viewCenterY, 0);
-	}
-	    
-	private final void reactionEst(){
-	  this.viewCenterX+=0.1;
-	  Window.vi.setViewCenter(this.viewCenterX, this.viewCenterY, 0);
-	}
-	    
-	private final void reactionWest(){
-	  this.viewCenterX-=0.1;
-	  Window.vi.setViewCenter(viewCenterX, this.viewCenterY, 0);
-	}*/
-	    
+		    
 
 }
 

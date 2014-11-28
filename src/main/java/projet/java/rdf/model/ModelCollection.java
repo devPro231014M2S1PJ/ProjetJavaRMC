@@ -1,12 +1,13 @@
 package projet.java.rdf.model;
-import projet.java.rdf.indexation.LocalTree;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.table.DefaultTableModel;
+
+import projet.java.rdf.indexation.LocalTree;
 
 import com.hp.hpl.jena.n3.JenaURIException;
 import com.hp.hpl.jena.rdf.model.Literal;
@@ -17,12 +18,10 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.util.FileManager;
 
-import javax.swing.table.DefaultTableModel;
-
 public class ModelCollection {
     
 	public ArrayList<LocalTree> listelocalTree=new ArrayList<LocalTree>();
-	public LinkedList<Model> listModel=new LinkedList<Model>(); // liste des modèles
+	public LinkedList<Model> listModel=new LinkedList<Model>(); // liste des modï¿½les
 	
 	private int nowModel=0;
 	
@@ -30,7 +29,7 @@ public class ModelCollection {
 		System.out.println(path);
 		File file=new File(path);
 		if(file.isDirectory()){                          
-			File[] f= file.listFiles();                     // on recupère la liste des fichiers + dossier
+			File[] f= file.listFiles();                     // on recupï¿½re la liste des fichiers + dossier
 			for(File fil:f){                                // pour chaque  dossier ou fichier
 				
 				 this.addRDFsFile(fil.getPath());                        // on appelle la fonction avec le chemin du dossier ou 
@@ -51,12 +50,12 @@ public class ModelCollection {
 	
 
 	
-	// metre le premier modèle RDF de la liste sur le modèle des données affiché par le JTable dans RdfWindow
+	// metre le premier modï¿½le RDF de la liste sur le modï¿½le des donnï¿½es affichï¿½ par le JTable dans RdfWindow
 	public void putFirst(DefaultTableModel jTableModel){  
 		if(listModel.size()>0)ModelCollection.putTriplet(listModel.get(0),jTableModel);
 	}
 	
-	// naviguer vers le modèle suivant
+	// naviguer vers le modï¿½le suivant
 	public void next(DefaultTableModel jTableModel){
 		if(this.nowModel<this.listModel.size()-1){
 			this.nowModel++;
@@ -64,7 +63,7 @@ public class ModelCollection {
 		}
 	}
 	
-	// naviguer vers le modèle précedent
+	// naviguer vers le modï¿½le prï¿½cedent
 	public void previous(DefaultTableModel jTableModel){
 		if(this.nowModel>0){
 			this.nowModel--;
