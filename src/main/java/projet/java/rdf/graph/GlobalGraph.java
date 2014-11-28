@@ -10,8 +10,6 @@ import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.ui.swingViewer.Viewer;
 import org.graphstream.ui.swingViewer.Viewer.ThreadingModel;
 
-
-
 import projet.java.rdf.indexation.CoupleResource;
 import projet.java.rdf.indexation.LocalTree;
 import projet.java.rdf.model.ModelCollection;
@@ -29,7 +27,7 @@ public class GlobalGraph {
     	 
     	  
       }
-      
+      /*fonction qui permet d'aficher les noeuds*/
       public void display(){
     	  int i=0;
           g.setStrict(false);
