@@ -14,6 +14,8 @@ import projet.java.rdf.indexation.CoupleResource;
 import projet.java.rdf.indexation.LocalTree;
 import projet.java.rdf.model.ModelCollection;
 
+
+// Cette classe permet de présenter le graph general
 public class GlobalGraph {
       ArrayList<LocalTree> localTrees;
       ArrayList<Node> lasteSearch=new ArrayList<Node>();
@@ -27,7 +29,7 @@ public class GlobalGraph {
     	 
     	  
       }
-      /*fonction qui permet d'aficher les noeuds*/
+      /*fonction qui permet d'afficher les noeuds*/
       public void display(){
     	  int i=0;
           g.setStrict(false);
