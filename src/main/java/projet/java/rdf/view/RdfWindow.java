@@ -25,20 +25,20 @@ import org.graphstream.ui.swingViewer.Viewer;
 public class RdfWindow extends JFrame {
 
 	/**
-	 * Declaration des variables globale (les variables qui doivent être accecibles depuis les autres classes 
+	 * Declaration des variables globale (les variables qui doivent ï¿½tre accecibles depuis les autres classes 
 	 */
 
 	public JTextField zoneSearch; // champs Text
-	public JButton buttParcourir,buttSearch,buttSuivant, buttPrecedent,buttQuitter,buttNorth,buttSouth,buttEst,buttWest,
-    buttZoom,buttDeZoom; // les boutton du mode configuration 
-	public DefaultTableModel modelSearch, modelParcourir;// le model d'affichage des données dans le mode 
+	public JButton buttParcourir,buttSearch,buttSuivant, buttPrecedent,
+	buttQuitter,buttNorth,buttSouth,buttEst,buttWest, buttZoom,buttDeZoom; // les boutton du mode configuration 
+	public DefaultTableModel modelSearch, modelParcourir;// le model d'affichage des donnï¿½es dans le mode 
 	private JTable tableauSearch, tableauParcourir;// les tables qui l'afficherons
-	private Object[][] dataSearch,dataParcourir; // les tableaux qui contiennent les données
+	private Object[][] dataSearch,dataParcourir; // les tableaux qui contiennent les donnï¿½es
 	private String[] dataModSearch = {"Ressource"},dataModConfig = {"Sujet", "Predicat", "Ressource"}; // les deux mode d'affichage
 	public View vi;
 	
 	/**
-	 * à la construction
+	 * ï¿½ la construction
 	 */
 
 	public RdfWindow(Viewer v) {
@@ -60,7 +60,7 @@ public class RdfWindow extends JFrame {
 		tableauParcourir = new JTable( modelParcourir);
 		tableauParcourir.setPreferredScrollableViewportSize(new Dimension(600, 400));
 
-		this.buttPrecedent =buttFactory("Précedent",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
+		this.buttPrecedent =buttFactory("Prï¿½cedent",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
 		this.buttSuivant =buttFactory("suivant",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
 		this.buttParcourir =buttFactory("Parcourir",new Color(255, 255, 255), new Color(47, 204, 113),100,36);
 		this.buttQuitter= this.buttFactory("Quitter",new Color(255, 255, 255), new Color(226, 73, 57),60,50);  
@@ -73,17 +73,17 @@ public class RdfWindow extends JFrame {
 	}
 
 	/**
-	 * creation de l'entête de la fenêtre
+	 * creation de l'entï¿½te de la fenï¿½tre
 	 */	 
 	private final JPanFactory createHeader(){
-		JPanFactory panHeader = new JPanFactory(new Color(40,170,226),950,70); // creation du conteneur globale de l'entête
+		JPanFactory panHeader = new JPanFactory(new Color(40,170,226),950,70); // creation du conteneur globale de l'entï¿½te
 		JLabel labLogo = new JLabel(new ImageIcon("./src/main/java/logo.png"));          // creation du logo
 		JLabel labTitle = new JLabel(new ImageIcon("./src//main/java/app-tit.png"));      // creation du titre
 		JPanFactory panLogo= new JPanFactory(new Color(16,24,31), 200, 70);    //le conteneur du logo 
 		panLogo.add(labLogo);                                                  
 		panHeader.add(panLogo, BorderLayout.WEST);                    
 		panHeader.add(labTitle,BorderLayout.CENTER);
-		return panHeader;                                                      // retourné le conteneur globale de l entÃ©te
+		return panHeader;                                                      // retournï¿½ le conteneur globale de l entÃ©te
 	}
 
 	/**
@@ -91,12 +91,12 @@ public class RdfWindow extends JFrame {
 	 */
 	private final JPanFactory createSideBar(){
 		JPanFactory panSideBar= new JPanFactory(new Color(25,36,46),200, 630); // conteneur global
-		JPanFactory panForm = new JPanFactory(new Color(25,36,46), 200, 110);  // sous conteneur qui sera positionné en haut et contient tout les composante
+		JPanFactory panForm = new JPanFactory(new Color(25,36,46), 200, 110);  // sous conteneur qui sera positionnï¿½ en haut et contient tout les composante
 		panForm.setLayout(new GridLayout(3,1,0,4));
 
 
 		// boutton qui lance la recherche		
-		JLabel labKeyWord = new JLabel("Mot-clé");   //title
+		JLabel labKeyWord = new JLabel("Mot-clï¿½");   //title
 		labKeyWord.setForeground(new Color(255,255,255));
 		panForm.add(labKeyWord);
 		panForm.add(zoneSearch);
@@ -126,7 +126,7 @@ public class RdfWindow extends JFrame {
 	}
 
 	/**
-	 * creation du tableau qui permet la navigation entre les différentes modes
+	 * creation du tableau qui permet la navigation entre les diffï¿½rentes modes
 	 */
 
 	private final JTabbedPane createSwitchTable(){
@@ -146,7 +146,7 @@ public class RdfWindow extends JFrame {
 		jTab.addTab("test", p);
 		jTab.addTab("Recherche dans un fichier", new JScrollPane(tableauSearch)); 
 		jTab.addTab("Parcourir des fichiers", panGestionFichier);
-		jTab.setSelectedIndex(0); // positionné le premier affichage a l'execution en mode recherche
+		jTab.setSelectedIndex(0); // positionnï¿½ le premier affichage a l'execution en mode recherche
 		return jTab;
 	}
 	
@@ -187,8 +187,8 @@ public class RdfWindow extends JFrame {
 	 */ 
 
 	public final  void Display() {
-		this.setTitle("Projet Java - Master ACSIS - 2014/2015 Recherche par mots-clés dans"
-				+ "des données RDF (Groupe 4 : Rami - Amine - Ameur - Zakaria - Ania - Nadia)");
+		this.setTitle("Projet Java - Master ACSIS - 2014/2015 Recherche par mots-clï¿½s dans"
+				+ "des donnï¿½es RDF (Groupe 4 : Rami - Amine - Ameur - Zakaria - Ania - Nadia)");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setPreferredSize(new Dimension(1100, 700));
 		this.setLocation(0,0);  

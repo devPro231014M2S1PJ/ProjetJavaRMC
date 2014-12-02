@@ -38,9 +38,9 @@ public class Indexation {
 	    for(File fi:file)fi.delete();	    
     }
 
- 
+ /**************************/
     private static IndexWriter creatOrCallIndexDirect(boolean isNewIndex) throws IOException{
-		 File f=new File("C:/projetIndexation/agregatIndexation");
+		 File f=new File("/media/amine/6E5B-167C/Index/Dowload/indexLucen");
 		 if(isNewIndex)sup(f);
 		    Directory directory = FSDirectory.open(f);
 		    IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, new StandardAnalyzer());

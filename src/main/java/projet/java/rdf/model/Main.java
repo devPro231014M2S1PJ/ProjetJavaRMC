@@ -16,12 +16,13 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 
-		ModelCollection modelCollection=new  ModelCollection(); // création de la liste des modèle
-		modelCollection.addRDFsFile("C:/rdf/jeux_de_donnees"); // création d'un modèle pour tous les fichiers RDF d'un dossier 
+		ModelCollection modelCollection=new  ModelCollection(); 
+		// crï¿½ation de la liste des modï¿½le
+		modelCollection.addRDFsFile("/home/amine/Bureau/jeuxDeDonner"); 
+		// crï¿½ation d'un modï¿½le pour tous les fichiers RDF d'un dossier 
 		
 		Indexation index=new Indexation(modelCollection.listelocalTree);
 	    index.testAndIndex(true);
-	    System.out.println("je suis la");
 	    
 	    GlobalGraph g=new GlobalGraph(modelCollection.listelocalTree);
 	    g.display();
