@@ -30,7 +30,7 @@ public class RdfWindow extends JFrame {
 
 	public JTextField zoneSearch; // champs Text
 	public JButton buttParcourir,buttSearch,buttSuivant, buttPrecedent,
-	buttQuitter,buttNorth,buttSouth,buttEst,buttWest, buttZoom,buttDeZoom; // les boutton du mode configuration 
+	buttQuitter; // les boutton du mode configuration 
 	public DefaultTableModel modelSearch, modelParcourir;// le model d'affichage des donn�es dans le mode 
 	private JTable tableauSearch, tableauParcourir;// les tables qui l'afficherons
 	private Object[][] dataSearch,dataParcourir; // les tableaux qui contiennent les donn�es
@@ -64,12 +64,7 @@ public class RdfWindow extends JFrame {
 		this.buttSuivant =buttFactory("suivant",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
 		this.buttParcourir =buttFactory("Parcourir",new Color(255, 255, 255), new Color(47, 204, 113),100,36);
 		this.buttQuitter= this.buttFactory("Quitter",new Color(255, 255, 255), new Color(226, 73, 57),60,50);  
-		this.buttNorth=buttFactory("HAUT",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
-	    this.buttEst=buttFactory("  >>",new Color(255, 255, 255), new Color(226, 73, 57),80,36);
-	    this.buttWest=buttFactory(" << ",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
-	    this.buttSouth=buttFactory("BAS",new Color(255, 255, 255), new Color(226, 73, 57),80,36);
-	    this.buttZoom=buttFactory(" + ",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
-	    this.buttDeZoom=buttFactory(" - ",new Color(255, 255, 255), new Color(226, 73, 57),80,36);
+
 	}
 
 	/**
@@ -154,14 +149,7 @@ public class RdfWindow extends JFrame {
 	  * creation du conteneur pour le mode config
 	  */ 
     private final JPanel createGraphSurf(){
-   	 JPanel panControl=new JPanel(new GridLayout(8,1));
-   	 panControl.add(buttNorth);
-		 panControl.add(buttSouth);
-		 panControl.add(buttWest);
-		 panControl.add(buttEst);
-		 panControl.add(buttZoom);
-		 panControl.add(buttDeZoom);
-		
+   	 JPanel panControl=new JPanel(new GridLayout(8,1));		
    	 return panControl;
     }
 

@@ -1,6 +1,7 @@
 package projet.java.rdf.graph;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.graphstream.algorithm.Dijkstra;
 import org.graphstream.graph.Edge;
@@ -43,8 +44,8 @@ public class GlobalGraph {
     	  }
     	  for(LocalTree l:localTrees){
     	      for(CoupleResource cr:l.coupleResc){ 
-    		     Edge d=this.g.addEdge(cr.predicat.toString()+i, l.resource.toString(), cr.ArbusteDeLaResource.resource.toString(), true); 
-    	         d.addAttribute("ui.label", cr.predicat.getLocalName());
+    		     cr.e=this.g.addEdge(cr.predicat.toString()+i, l.resource.toString(), cr.ArbusteDeLaResource.resource.toString(), true); 
+    	         cr.e.addAttribute("ui.label", cr.predicat.getLocalName());
     		     i++;
     	       }
           }
@@ -62,7 +63,12 @@ public class GlobalGraph {
     				  lasteSearch.add(l.n);
     				  l.n.removeAttribute("ui.style");
     				  l.n.addAttribute("ui.style", "fill-color: rgb(255,100,000);"
-    				  		+ "size:0.02%;text-size:20%; text-color:red;");  
+    				  		+ "size:0.02%;text-size:20%; text-color:red;");
+    				  Iterator<Edge> iter=l.n.getLeavingEdgeIterator();
+    				  while(iter.hasNext()){
+    					  iter.next().addAttribute("ui.style", "fill-color: rgb(155,100,000);"
+    				  		+ "size:0.02%;text-size:20%; text-color:red;");
+    				  }
     			  }
     		  }
     	  }

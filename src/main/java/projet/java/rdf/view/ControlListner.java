@@ -39,12 +39,7 @@ public class ControlListner implements ActionListener{
 		window.buttPrecedent.addActionListener(this);
 		window.buttQuitter.addActionListener(this);
 		window.buttSearch.addActionListener(this);
-		window.buttEst.addActionListener(this);
-		window.buttWest.addActionListener(this);
-		window.buttNorth.addActionListener(this);
-		window.buttSouth.addActionListener(this);
-		window.buttZoom.addActionListener(this);
-		window.buttDeZoom.addActionListener(this);
+
 
 	}
 

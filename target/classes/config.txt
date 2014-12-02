@@ -1,4 +1,4 @@
 ecrir le dossier du jeux de donn�es par defaut apres en bas(2):
-/home/amine/Bureau/jeuxDeDonner
+C:\Projet Java M2\jeuxDeDonner
 ecrir le dossier du jeux de l'index en bas:
-/media/amine/6E5B-167C/Index/Dowload/indexLucen
+C:\Projet Java M2\index
