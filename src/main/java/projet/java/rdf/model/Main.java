@@ -14,9 +14,8 @@ public class Main {
 	
 	
 	public static String configDirectoySource ;
-	public static String configDirectoryIndex ;
-	
-	// Fonction de cr�ation de la configuration
+	public static String configDirectoryIndex ;	
+	// Fonction de cr�ation de la configuration
 	public static void config() throws IOException{
 		try {
 			String ligne;
@@ -40,18 +39,14 @@ public class Main {
 	}
 	
 
-
 	public static void main(String[] args) throws IOException {
-       Main.config();
+        Main.config();
 		ModelCollection modelCollection=new  ModelCollection();
-		Main.prints(configDirectoySource, true);
-		// cr�ation de la liste des mod�le
+		// création de la liste des modéle
 		modelCollection.addRDFsFile(configDirectoySource); 
-		// cr�ation d'un mod�le pour tous les fichiers RDF d'un dossier 
-		
+		// création d'un modéle pour tous les fichiers RDF d'un dossier 
 		Indexation index=new Indexation(modelCollection.listelocalTree);
 	    index.testAndIndex(true);
-	    
 	    GlobalGraph g=new GlobalGraph(modelCollection.listelocalTree);
 	    g.display();
 	    

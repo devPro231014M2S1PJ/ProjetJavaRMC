@@ -1,4 +1,4 @@
-ecrir le dossier du jeux de données par defaut apres en bas(2):
-C:/vc-db-1.rdf
+ecrir le dossier du jeux de donnï¿½es par defaut apres en bas(2):
+/home/amine/Bureau/jeuxDeDonner
 ecrir le dossier du jeux de l'index en bas:
-C:/index
+/media/amine/6E5B-167C/Index/Dowload/indexLucen

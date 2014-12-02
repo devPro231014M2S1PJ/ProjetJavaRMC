@@ -108,7 +108,7 @@ public class ControlListner implements ActionListener{
 			for(int i=0;i<v;i++)this.Window.modelSearch.removeRow(0);
 		} else{
 			try {
-				this.recherche.search(this.Window.zoneSearch.getText(),this.Window.modelSearch);
+				this.graph.detectResource(this.recherche.search(this.Window.zoneSearch.getText(),this.Window.modelSearch));
 			} catch (IOException | ParseException e) {
 				e.printStackTrace();
 			}

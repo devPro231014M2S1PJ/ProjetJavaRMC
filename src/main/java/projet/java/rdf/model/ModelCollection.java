@@ -26,14 +26,11 @@ public class ModelCollection {
 	private int nowModel=0;
 	
 	public void addRDFsFile(String path){
-		System.out.println(path);
 		File file=new File(path);
 		if(file.isDirectory()){                          
 			File[] f= file.listFiles();                     // on recup�re la liste des fichiers + dossier
 			for(File fil:f){                                // pour chaque  dossier ou fichier
-				
 				 this.addRDFsFile(fil.getPath());                        // on appelle la fonction avec le chemin du dossier ou 
-
 			}	 
 			
 		}else{
@@ -73,7 +70,7 @@ public class ModelCollection {
 	
 
 	public void AddToLocalTree(Model model){
-		 Main.prints("create tree", false);
+		 Main.prints("create tree", true);
 		 Statement stmt; 
 		 // le triple
 		 Resource  resource,predicat,objet; 

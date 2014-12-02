@@ -15,7 +15,7 @@ import projet.java.rdf.indexation.LocalTree;
 import projet.java.rdf.model.ModelCollection;
 
 
-// Cette classe permet de présenter le graph general
+// Cette classe permet de prï¿½senter le graph general
 public class GlobalGraph {
       ArrayList<LocalTree> localTrees;
       ArrayList<Node> lasteSearch=new ArrayList<Node>();
@@ -42,8 +42,7 @@ public class GlobalGraph {
     	   
     	  }
     	  for(LocalTree l:localTrees){
-    	      for(CoupleResource cr:l.coupleResc){
-    	         System.out.println(l.resource.toString()+i+"-->" +cr.predicat.toString()+"--->"+cr.ArbusteDeLaResource.resource.toString()); 
+    	      for(CoupleResource cr:l.coupleResc){ 
     		     Edge d=this.g.addEdge(cr.predicat.toString()+i, l.resource.toString(), cr.ArbusteDeLaResource.resource.toString(), true); 
     	         d.addAttribute("ui.label", cr.predicat.getLocalName());
     		     i++;
@@ -68,6 +67,5 @@ public class GlobalGraph {
     		  }
     	  }
       }
-
-
+      
 }

@@ -35,7 +35,9 @@ public class SearchInIndex {
         return a;  	
 	}
 
-	private ArrayList<String> searchIn(String field, boolean istoAdd, String query,DefaultTableModel table) throws IOException, ParseException {
+	private ArrayList<String> searchIn(String field, boolean istoAdd, 
+			                           String query,DefaultTableModel table) 
+			                        		   throws IOException, ParseException {
 		ArrayList<String> s=new ArrayList<String>();
 		this.query=query;
 		
@@ -73,10 +75,8 @@ public class SearchInIndex {
 	public void parseQuery() {
 		Pattern pattern = Pattern.compile("[[a-z][A-Z][0-9]]+");
 		Matcher matcher = pattern.matcher(this.query);
-		while(matcher.find()){
-		    //System.out.println(matcher.group());
-			this.parsedQuery.add(matcher.group());
-		}
+		while(matcher.find()) this.parsedQuery.add(matcher.group());
+		
 	}
 
 }

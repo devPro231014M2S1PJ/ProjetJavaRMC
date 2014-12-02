@@ -13,7 +13,6 @@ import org.apache.lucene.util.Version;
 
 import projet.java.rdf.model.Main;
 
-
 public class Indexation {
 	
 	public ArrayList<LocalTree> listLocalTree=new ArrayList<LocalTree>();
@@ -40,7 +39,7 @@ public class Indexation {
 	    for(File fi:file)fi.delete();	    
     }
 
- /**************************/
+ /*****************************************************************************************/
     private static IndexWriter creatOrCallIndexDirect(boolean isNewIndex) throws IOException{
 		 File f=new File(Main.configDirectoryIndex);
 		 if(isNewIndex)sup(f);
@@ -48,6 +47,5 @@ public class Indexation {
 		    IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, new StandardAnalyzer());
 		 return(new IndexWriter(directory,config));
     }
-	
 	
 }
