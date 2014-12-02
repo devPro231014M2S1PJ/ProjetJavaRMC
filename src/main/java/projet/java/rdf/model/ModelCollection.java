@@ -73,14 +73,14 @@ public class ModelCollection {
 	
 
 	public void AddToLocalTree(Model model){
-		 Main.pf("test", false);
+		 Main.prints("create tree", false);
 		 Statement stmt; 
 		 // le triple
 		 Resource  resource,predicat,objet; 
 		 Literal literal;
 		 StmtIterator stmtIter=model.listStatements(); 
 		 while(stmtIter.hasNext()){
-			 Main.pf("testing", false);
+			 
 			   stmt=stmtIter.next();	
 			   resource=stmt.getSubject();
 			   predicat=stmt.getPredicate();

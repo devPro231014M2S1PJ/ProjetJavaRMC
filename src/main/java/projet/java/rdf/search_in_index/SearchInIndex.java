@@ -20,6 +20,8 @@ import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+import projet.java.rdf.model.Main;
+
 public class SearchInIndex {
 
 	private String query;
@@ -43,7 +45,7 @@ public class SearchInIndex {
 		 for(int i=0;i<v;i++)table.removeRow(0);
 		}
 		
-		Directory directory = FSDirectory.open(new File("C:/projetIndexation/agregatIndexation"));
+		Directory directory = FSDirectory.open(new File(Main.configDirectoryIndex));
 		@SuppressWarnings("deprecation")
 		
 		IndexReader indexReader = IndexReader.open(directory);

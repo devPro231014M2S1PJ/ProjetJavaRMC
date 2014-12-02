@@ -11,6 +11,8 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
+import projet.java.rdf.model.Main;
+
 
 public class Indexation {
 	
@@ -40,7 +42,7 @@ public class Indexation {
 
  /**************************/
     private static IndexWriter creatOrCallIndexDirect(boolean isNewIndex) throws IOException{
-		 File f=new File("/media/amine/6E5B-167C/Index/Dowload/indexLucen");
+		 File f=new File(Main.configDirectoryIndex);
 		 if(isNewIndex)sup(f);
 		    Directory directory = FSDirectory.open(f);
 		    IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, new StandardAnalyzer());
