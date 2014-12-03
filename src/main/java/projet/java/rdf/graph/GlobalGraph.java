@@ -1,10 +1,7 @@
 package projet.java.rdf.graph;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import org.graphstream.algorithm.Dijkstra;
-import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
@@ -21,8 +18,9 @@ public class GlobalGraph {
       ArrayList<LocalTree> localTrees;
       ArrayList<Node> lasteSearch=new ArrayList<Node>();
       Graph g=new MultiGraph("test");
+      SteinerGraph steinerGraph=null;
       public Viewer v=new Viewer(g, ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
-      Dijkstra d=new Dijkstra(null, "", null);
+     
       
       
       public GlobalGraph(ArrayList<LocalTree> localTrees){
@@ -64,14 +62,12 @@ public class GlobalGraph {
     				  l.n.removeAttribute("ui.style");
     				  l.n.addAttribute("ui.style", "fill-color: rgb(255,100,000);"
     				  		+ "size:0.02%;text-size:20%; text-color:red;");
-    				  Iterator<Edge> iter=l.n.getLeavingEdgeIterator();
-    				  while(iter.hasNext()){
-    					  iter.next().addAttribute("ui.style", "fill-color: rgb(155,100,000);"
-    				  		+ "size:0.02%;text-size:20%; text-color:red;");
-    				  }
+    				  
     			  }
     		  }
     	  }
+    	  steinerGraph=new SteinerGraph(g, lasteSearch);
+    	  
       }
       
 }
