@@ -66,7 +66,9 @@ public class GlobalGraph {
     			  }
     		  }
     	  }
-    	  steinerGraph=new SteinerGraph(g, lasteSearch);
+    	  this.steinerGraph=new SteinerGraph(g, lasteSearch);
+    	  this.steinerGraph.creatSousGraph();
+    	  this.steinerGraph.sousGraph.display();
     	  
       }
       

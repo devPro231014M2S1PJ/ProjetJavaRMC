@@ -1,4 +1,4 @@
 ecrir le dossier du jeux de donn�es par defaut apres en bas(2):
-C:\Projet Java M2\jeuxDeDonner
+C:\Users\Ameur\Desktop\test\rdf\fich.rdf
 ecrir le dossier du jeux de l'index en bas:
 C:\Projet Java M2\index

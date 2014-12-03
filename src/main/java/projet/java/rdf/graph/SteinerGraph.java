@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.graphstream.algorithm.Dijkstra;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.IdAlreadyInUseException;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
 
@@ -23,16 +24,25 @@ public class SteinerGraph {
 			   dijkstra.setSource(sourceNode);
 		       //sousGraph.addNode(sourceNode.getId());
 		       dijkstra.compute();
-		       for(Node n:this.localezedNodes){
-		    	   for (Edge node : dijkstra.getPathEdges(n)){
-		    		   node.addAttribute("ui.style", "fill-color:red;");
-		    		   
-		    	   }   
-		       }    
+		           
 		       
 		 }catch(IndexOutOfBoundsException e){Main.prints("pas de noeud trouvé",true);}
 	}
-	
+	public void creatSousGraph(){
+		   Node n1;
+		   Node n2;
+	       for(Node n:this.localezedNodes){
+	    	   for (Edge edje : dijkstra.getPathEdges(n)){
+	    		   edje.addAttribute("ui.style", "fill-color:red;");
+	    		   n1=edje.getSourceNode();
+	    		   n2=edje.getTargetNode();
+	    		   try{sousGraph.addNode(n1.getId());}catch(IdAlreadyInUseException e){}
+	    		   try{sousGraph.addNode(n2.getId());}catch(IdAlreadyInUseException e){}
+	    		   try{sousGraph.addEdge(edje.getId(), n1, n2,true);}catch(IdAlreadyInUseException e){} 
+	    		   
+	    	   }   
+	       }
+	       }
 	
 
 }
