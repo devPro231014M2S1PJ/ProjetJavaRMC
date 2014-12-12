@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import projet.java.rdf.graph.GlobalGraph;
 import projet.java.rdf.indexation.Indexation;
-import projet.java.rdf.view.ControlListner;
-import projet.java.rdf.view.RdfWindow;
+import projet.java.rdf.window.ControlListner;
+import projet.java.rdf.window.RdfWindow;
 
 public class Main {
 	

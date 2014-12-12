@@ -1,4 +1,4 @@
-package projet.java.rdf.view;
+package projet.java.rdf.window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
