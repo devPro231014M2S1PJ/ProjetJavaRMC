@@ -13,25 +13,25 @@ import org.apache.lucene.queryparser.classic.ParseException;
 
 import projet.java.rdf.graph.GlobalGraph;
 import projet.java.rdf.indexation.Indexation;
-import projet.java.rdf.model.ModelCollection;
+import projet.java.rdf.loadModel.Models;
 import projet.java.rdf.search_in_index.SearchInIndex;
 
 public class ControlListner implements ActionListener{
 	
 	RdfWindow Window;
-	ModelCollection modelCollection;
+	//ModelCollection modelCollection;
 	SearchInIndex recherche=new SearchInIndex();
 	Indexation indexation;
 	double viewPersent=1, viewCenterX=0, viewCenterY=0;
 	ArrayList<String> resourceResult=new ArrayList<String>();
 	GlobalGraph graph;
 
-	public ControlListner(RdfWindow window,ModelCollection modelCollection, Indexation index, GlobalGraph graph) {
+	public ControlListner(RdfWindow window,Models modelCollection, Indexation index, GlobalGraph graph) {
 
 		this.Window=window;                               // affecter la fen�tre dont les �v�nement seront trait�
-		this.modelCollection=modelCollection;             // affecter la collection des fichiers
+		//this.modelCollection=modelCollection;             // affecter la collection des fichiers
 		this.indexation=index;
-		modelCollection.putFirst(window.modelParcourir);  // mettre le premier mod�le RDF a affich�
+		//modelCollection.putFirst(window.modelParcourir);  // mettre le premier mod�le RDF a affich�
 		// mettre sous �coute les composantes qui nous int�resse
 		this.graph=graph;
 		window.buttParcourir.addActionListener(this);     
@@ -76,7 +76,7 @@ public class ControlListner implements ActionListener{
 		chooser.setFileFilter(filter);
 		chooser.showOpenDialog(null);
 		try{ 
-			modelCollection.addRDFsFile(chooser.getSelectedFile().toString());
+			//modelCollection.addRDFsFile(chooser.getSelectedFile().toString());
 		}  catch(NullPointerException e){ System.out.println("aucun fichier selectionner" );}
 	}
 
@@ -90,11 +90,11 @@ public class ControlListner implements ActionListener{
 
 	// r�action au clic sur le bouton suivant
 	private final void reactionSuivant(){
-		this.modelCollection.next(this.Window.modelParcourir);
+		//this.modelCollection.next(this.Window.modelParcourir);
 	}
 
 	private final void reactionPrecedant(){
-		this.modelCollection.previous(this.Window.modelParcourir);
+		//this.modelCollection.previous(this.Window.modelParcourir);
 	}
 
 	private final void reactionSearch() {

@@ -1,12 +1,10 @@
-package projet.java.rdf.model;
+package projet.java.rdf.loadModel;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import projet.java.rdf.graph.GlobalGraph;
-import projet.java.rdf.indexation.Indexation;
 import projet.java.rdf.window.ControlListner;
 import projet.java.rdf.window.RdfWindow;
 
@@ -41,17 +39,17 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
         Main.config();
-		ModelCollection modelCollection=new  ModelCollection();
+		//ModelCollection modelCollection=new  ModelCollection();
 		// création de la liste des modéle
-		modelCollection.addRDFsFile(configDirectoySource); 
+		//modelCollection.addRDFsFile(configDirectoySource); 
 		// création d'un modéle pour tous les fichiers RDF d'un dossier 
-		Indexation index=new Indexation(modelCollection.listelocalTree);
-	    index.testAndIndex(true);
-	    GlobalGraph g=new GlobalGraph(modelCollection.listelocalTree);
-	    g.display();
+		//Indexation index=new Indexation(modelCollection.listelocalTree);
+	    //index.testAndIndex(true);
+	    //GlobalGraph g=new GlobalGraph(modelCollection.listelocalTree);
+	    //g.display();
 	    
-		RdfWindow window=new RdfWindow(g.v);  
+		/*RdfWindow window=new RdfWindow(g.v);  
 		new ControlListner(window,modelCollection,index,g);
-		window.Display();
+		window.Display();*/
 	}
 }

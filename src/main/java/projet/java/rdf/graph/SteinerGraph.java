@@ -9,7 +9,7 @@ import org.graphstream.graph.IdAlreadyInUseException;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
 
-import projet.java.rdf.model.Main;
+import projet.java.rdf.loadModel.Main;
 
 public class SteinerGraph {
 	public Graph sousGraph;

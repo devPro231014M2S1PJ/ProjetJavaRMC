@@ -10,7 +10,6 @@ import org.graphstream.ui.swingViewer.Viewer.ThreadingModel;
 
 import projet.java.rdf.indexation.CoupleResource;
 import projet.java.rdf.indexation.LocalTree;
-import projet.java.rdf.model.ModelCollection;
 
 
 // Cette classe permet de pr�senter le graph general
@@ -57,13 +56,13 @@ public class GlobalGraph {
     	        lasteSearch.clear();
     	  for(String s: resultResource){
     		  for(LocalTree l:localTrees){
-    			  if(ModelCollection.isEquales(s, l.resource.toString())){
+    			//  if(ModelCollection.isEquales(s, l.resource.toString())){
     				  lasteSearch.add(l.n);
     				  l.n.removeAttribute("ui.style");
     				  l.n.addAttribute("ui.style", "fill-color: rgb(255,100,000);"
     				  		+ "size:0.02%;text-size:20%; text-color:red;");
     				  
-    			  }
+    			 // }
     		  }
     	  }
     	  this.steinerGraph=new SteinerGraph(g, lasteSearch);
