@@ -35,16 +35,16 @@ public class RdfWindow extends JFrame {
 	private JTable tableauSearch, tableauParcourir;// les tables qui l'afficherons
 	private Object[][] dataSearch,dataParcourir; // les tableaux qui contiennent les donn�es
 	private String[] dataModSearch = {"Ressource"},dataModConfig = {"Sujet", "Predicat", "Ressource"}; // les deux mode d'affichage
-	public View vi;
+	//public View vi;
 	
 	/**
 	 * � la construction
 	 */
 
-	public RdfWindow(Viewer v) {
+	public RdfWindow(/*Viewer v*/) {
 		
-		v.enableAutoLayout();
-		this.vi=v.addDefaultView(false);;
+		//v.enableAutoLayout();
+		//this.vi=v.addDefaultView(false);;
 		zoneSearch=new JTextField(); // zone de teste qui est une variable global
 		zoneSearch.setBorder(new EmptyBorder(2,2,2,2));
 		zoneSearch.setSize(190, 20);
@@ -135,7 +135,7 @@ public class RdfWindow extends JFrame {
 		panGestionFichier.add(new JScrollPane(tableauParcourir),BorderLayout.SOUTH);
 		
 		JPanel p=new JPanel(new BorderLayout());
-		p.add(vi, BorderLayout.CENTER);
+		//p.add(vi, BorderLayout.CENTER);
 		p.add(this.createGraphSurf(), BorderLayout.WEST);
 		
 		jTab.addTab("test", p);

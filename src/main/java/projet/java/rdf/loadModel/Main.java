@@ -48,8 +48,8 @@ public class Main {
 	    //GlobalGraph g=new GlobalGraph(modelCollection.listelocalTree);
 	    //g.display();
 	   
-		/*RdfWindow window=new RdfWindow(g.v);  
-		new ControlListner(window,modelCollection,index,g);
-		window.Display();*/
+		RdfWindow window=new RdfWindow();//g.v);  
+		//new ControlListner(window,modelCollection,index,g);
+		window.Display();
 	}
 }
