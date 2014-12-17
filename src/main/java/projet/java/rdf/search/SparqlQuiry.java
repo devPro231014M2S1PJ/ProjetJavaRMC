@@ -1,4 +1,4 @@
-package projet.java.rdf.search_in_index;
+package projet.java.rdf.search;
 
 import projet.java.rdf.loadModel.Models;
 
@@ -9,7 +9,7 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class SparqlQuery {
+public class SparqlQuiry {
 	
   private Models models;
   private final String prefix=
@@ -29,7 +29,7 @@ public class SparqlQuery {
 		     +"prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
 
   
-  public SparqlQuery(Models models){
+  public SparqlQuiry(Models models){
 	this.models=models;
 	
   }
@@ -37,9 +37,9 @@ public class SparqlQuery {
   
   
   public void test(){
-
+      String s="http://data.linkedmdb.org/resource/film/1";
 	  String queryString =this.prefix+ "SELECT DISTINCT  ?k "
-                         + "WHERE{ <http://data.linkedmdb.org/resource/film/1> movie:actor ?k."
+                         + "WHERE{ <"+s+"> movie:actor ?k."
                          + "       ?k rdf:type movie:actor."
                          + " } ";
 	 

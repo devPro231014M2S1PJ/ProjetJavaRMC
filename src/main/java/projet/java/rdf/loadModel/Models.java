@@ -1,10 +1,11 @@
 package projet.java.rdf.loadModel;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import org.openjena.riot.RiotException;
+import projet.java.rdf.main.Main;
 
 import com.hp.hpl.jena.n3.JenaURIException;
 import com.hp.hpl.jena.rdf.model.LiteralRequiredException;
@@ -14,56 +15,63 @@ import com.hp.hpl.jena.util.FileManager;
 
 public class Models{
 	
-	private LinkedList<Model> Models=new LinkedList<Model>();
+	private LinkedList<Model> Models;
 	private int indexToDisplay=0;
 
-	
-
 /*****************************************************************************************************************/
-	public Models(String path){
-		this.LoadModels(path);
-	}
+	 public Models(String path){
+		
+		this.Models=new LinkedList<Model>();
+		this.LoadModels(path);	
+	 }
 
 /***************************************************************************************************************/
-	private final void LoadModels(String path){
+	 private final void LoadModels(String path){
 		
 		File file=new File(path);
+	
 		
-		if(file.isDirectory()){                          
+	    if(file.isDirectory()){                          
 			
 			File[] f= file.listFiles();                     
 			
-			for(File fil:f){                                
+			for(File fil:f){                               
+				 
 			   this.LoadModels(fil.getPath());                        
-			}	 
+			}	
+			
 		}else{
+			
 			 try{
+				 
 				 try{
-				 Model model= FileManager.get().loadModel(path);
-				 this.Models.add(model);
-				   }catch(RiotException et){}
+				      
+					    Model model= FileManager.get().loadModel(path);
+				        this.Models.add(model);
+				  
+				   }catch(Exception et){}
 		 
          }catch(JenaURIException e){}
 	   }
-    }
+     }
 	
 /*************************************************************************************************************************/	
     
-	public ArrayList<String[]> current(){
+	 public ArrayList<String[]> current(){
 	  
-	  ArrayList<String[]> triples=new ArrayList<String[]>();
+	    ArrayList<String[]> triples=new ArrayList<String[]>();
 	  
-	  if(this.indexToDisplay<this.Models.size()){
+	    if(this.indexToDisplay<this.Models.size()){
 		
-		  return this.getModel(this.indexToDisplay,true,false);
-	  } 
+		   return this.getModel(this.indexToDisplay,true,false);
+	    } 
 	  
-	  return triples;
+	   return triples;
      }
 
 /*************************************************************************************************************************/
 	
-    public ArrayList<String[]> next(){
+     public ArrayList<String[]> next(){
 		
 		
 		if(this.indexToDisplay<this.Models.size()-1){
@@ -82,20 +90,22 @@ public class Models{
 		if(this.indexToDisplay!=0){
 			
 			this.indexToDisplay--;
+			
 			return this.getModel(this.indexToDisplay,true,false);
 		}
 		
 		return this.current();
-	}
+	 }
+    
 /************************************************************************************************************************/
 	
 /************************************************************************************************************************/
 	
-	private ArrayList<String[]> getModel(int index,boolean isToDisplay,boolean isToBuildGraph){
+	 private ArrayList<String[]> getModel(int index,boolean isToDisplay,boolean isToBuildGraph){
 		
-	   ArrayList<String[]> triples=new ArrayList<String[]>();
+	    ArrayList<String[]> triples=new ArrayList<String[]>();
 	 
-       if(index<=this.Models.size()){	   
+        if(index<=this.Models.size()){	   
             
     	    Model model=this.Models.get(index);        
         	Iterator<Statement> stmtIter=model.listStatements();
@@ -105,50 +115,65 @@ public class Models{
         	while(stmtIter.hasNext()){
 			   
         	   statement=stmtIter.next();
-			   sSub=statement.getSubject().toString();
+			   sSub=statement.getSubject().getURI();
 			   sPred=statement.getPredicate().getLocalName();
 			   
 			   try{ 
 			      
-				  sLitOrResc=statement.getLiteral().toString();
+				  sLitOrResc=statement.getLiteral().getString();
 			      if(isToBuildGraph) continue;
 			    }
-			   catch(LiteralRequiredException e){
+			   
+			    catch(LiteralRequiredException e){
 				  
 				  if(isToDisplay||isToBuildGraph)
 			             
-					      sLitOrResc=statement.getResource().toString();
-			      else    
-			    	      sLitOrResc="";
+					      sLitOrResc=statement.getResource().getURI();
+			      else{   
+			    	      if(Main.compare(sPred,"type") ){
+			    	    	         
+			    	         triples.add(new String[]{statement.getResource().getURI(),"//**",
+			    	        	                         statement.getResource().getLocalName()});
+			    	          sSub="//**"; sLitOrResc="";
+			    	      }else
+			    	         sLitOrResc="";
 			    }
-			   String[] sStatment={sSub,sPred,sLitOrResc};
-			   triples.add(sStatment);	
+			 }
+			  
+			      String[] sStatment={sSub,sPred,sLitOrResc};
+			      triples.add(sStatment);
+			   	
             }
-	   } 
+	    } 
        
        return triples;
 	}
 		
 /***********************************************************************************************************************/
 	
-	public ArrayList<ArrayList<String[]>> getAllModels(boolean isToBuildGraph){
+    public ArrayList<ArrayList<String[]>> getAllStingModels(boolean isToBuildGraph){
 		
 		int lenght=this.Models.size();
+		
 		ArrayList<ArrayList<String[]>> result=new ArrayList<ArrayList<String[]>>();
 		
 		for(int i=0;i<lenght;i++) {
 			
 			result.add(this.getModel(i, false,isToBuildGraph)); 
 		}
-		
+				
 		return result;
-	}
+	 }
 	
-	
-	public LinkedList<Model> getModels(){
-		
+/******************************************************************************************************************/	
+	 
+     public LinkedList<Model> getModels(){
 		return this.Models;
-	}
-	
+		
+	 }
+/********************************************************************************************************************/	 
+
+
+     
 /************************************************************************************************************************/
 }

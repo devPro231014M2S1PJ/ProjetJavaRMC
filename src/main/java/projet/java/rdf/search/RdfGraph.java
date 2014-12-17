@@ -1,4 +1,4 @@
-package projet.java.rdf.graph;
+package projet.java.rdf.search;
 
 import java.util.ArrayList;
 

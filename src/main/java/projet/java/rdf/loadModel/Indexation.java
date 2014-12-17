@@ -11,6 +11,8 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
+import projet.java.rdf.main.Main;
+
 
 public class Indexation {
 	
@@ -21,7 +23,7 @@ public class Indexation {
 	public Indexation(Models models,String pathOfIndexDerectory){
 		
 		
-		ArrayList<ArrayList<String[]>> sModels=models.getAllModels(false);
+		ArrayList<ArrayList<String[]>> sModels=models.getAllStingModels(false);
 		
 		this.pathOfIndexDerectory=pathOfIndexDerectory;
 		this.putInInfoToIndex(sModels);
@@ -61,7 +63,7 @@ public class Indexation {
 	    int i=0;
 	    
 		for(InfoToIndex iti:this.infos_toIndex){
-			if(iti.getResource()== resource){
+			if(Main.compare(iti.getResource(),resource)){
 				return i;
 			}
 			i++;
