@@ -3,6 +3,36 @@
   <groupId>projet.java.rdf</groupId>
   <artifactId>ProjetJavaRMC</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+    <build>
+   <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+              <descriptors>
+<descriptor>src/main/assembly/jar.xml</descriptor>
+              </descriptors>
+              <archive>
+                   <manifest>
+                        <mainClass>projet.java.rdf.main.Main</mainClass>
+                   </manifest>
+              </archive>
+              <descriptorRefs>
+                   <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+        </configuration>
+        <executions>
+              <execution>
+                   <id>executable</id>
+                   <phase>package</phase>
+                   <goals>
+                        <goal>single</goal>
+                   </goals>
+             </execution>
+         </executions>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
   	<dependency>
   		<groupId>com.hp.hpl.jena</groupId>

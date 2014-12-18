@@ -38,13 +38,15 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-	   Models models=new Models("/home/amine/Bureau/dataset");
-	   new Indexation(models,"/media/amine/6E5B-167C/Index/Dowload/indexLucen");
+		
+		
+	   Models models=new Models("C:\\jeux_de_donnes");
+	   new Indexation(models,"C:\\index_test_f");
 	   SparqlQuiry sparqlQuiry=new SparqlQuiry(models);
 	   //sparqlQuiry.search("actor amine actor aziz ");
 	   sparqlQuiry.test();
 
-	   SearchInIndex searchInIndex=new SearchInIndex("/media/amine/6E5B-167C/Index/Dowload/indexLucen");
+	   SearchInIndex searchInIndex=new SearchInIndex("C:\\index_test_f");
 	   RdfGraph rdfGraph=new RdfGraph(models.getAllStingModels(true));
 	   new RdfWindow(searchInIndex,models,rdfGraph);
        	}

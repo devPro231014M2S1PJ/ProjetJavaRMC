@@ -32,7 +32,6 @@ public class SurfModelsListener implements ActionListener{
 	}
 /****************************************************************************************************************/
 
-	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		if(arg0.getSource().equals(this.buttPrecedent)) this.putTriplet(models.previous());

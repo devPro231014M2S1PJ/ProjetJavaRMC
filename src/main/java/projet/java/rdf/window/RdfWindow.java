@@ -53,9 +53,9 @@ public class RdfWindow  extends JFrame {
 	   this.tableauSearch.setPreferredScrollableViewportSize(new Dimension(600, 650));
  	   
  	   this.buttSearch = new JButtonFactory("Rechercher",new Color(255, 255, 255), new Color(254, 153, 0),200,36); 
- 	   this.buttPrecedent =new JButtonFactory("<<PrÃ©c",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
-       this.buttSuivant   =new JButtonFactory("Suiv>>",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
-       this.buttQuitter   =new JButtonFactory("Quit",new Color(255, 255, 255), new Color(226, 73, 57),60,50); 
+ 	   this.buttPrecedent =new JButtonFactory("Précedent",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
+       this.buttSuivant   =new JButtonFactory("Suivant",new Color(255, 255, 255), new Color(47, 204, 113),80,36);
+       this.buttQuitter   =new JButtonFactory("Quitter",new Color(255, 255, 255), new Color(226, 73, 57),60,50); 
        
        // this.buttParcourir =new ButtonFactory("Parcourir...",new Color(255, 255, 255), new Color(47, 204, 113),100,36);
        this.Display();
@@ -63,10 +63,11 @@ public class RdfWindow  extends JFrame {
 	 
 /**********************************************************************************************************************/
      private final JPanFactory createHeader(){
+    
 	    
     	JPanFactory panHeader = new JPanFactory(new Color(40,170,226),950,70); 
-	    JLabel labLogo = new JLabel(new ImageIcon("./src/main/java/logo.png"));          
-	    JLabel labTitle = new JLabel(new ImageIcon("./src/main/java/app-tit.png"));      
+	    JLabel labLogo = new JLabel(new ImageIcon(getClass().getResource("/logo.png")));          
+	    JLabel labTitle = new JLabel(new ImageIcon(getClass().getResource("/app-tit.png")));      
 	    JPanFactory panLogo= new JPanFactory(new Color(16,24,31), 200, 70); 
 	    	 
 	    panLogo.add(labLogo);                                                  
@@ -76,6 +77,7 @@ public class RdfWindow  extends JFrame {
 	    return panHeader;                                                     
 	 }
 	  
+    
 /*********************************************************************************************************************/
 	 private final JPanFactory createSideBar(){
 	    
@@ -83,7 +85,7 @@ public class RdfWindow  extends JFrame {
 	    JPanFactory panForm = new JPanFactory(new Color(25,36,46), 200, 110);  
 	    panForm.setLayout(new GridLayout(3,1,0,4));
 					
-		JLabel labKeyWord = new JLabel("Mot-clÃ©"); 
+		JLabel labKeyWord = new JLabel("Mot-clés"); 
 		
 		labKeyWord.setForeground(new Color(255,255,255));
 		panForm.add(labKeyWord);
