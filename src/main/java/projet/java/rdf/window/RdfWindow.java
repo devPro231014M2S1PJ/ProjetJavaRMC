@@ -139,7 +139,7 @@ public class RdfWindow  extends JFrame {
     
 /*********************************************************************************************************************/
 	 
-     // creation de la bare latéral
+     // creation de la bare latÃ©ral
      private final JPanFactory createSideBar(){
 	    
 	   JPanFactory panSideBar= new JPanFactory(new Color(25,36,46),0, 0); 
@@ -228,8 +228,8 @@ public class RdfWindow  extends JFrame {
 /*****************************************************la fonction d'affichage appeler par le constructeur***********/   
     private final  void Display() {
 			   	
-	   this.setTitle("Projet Java - Master ACSIS - 2014/2015 Recherche par mots-clés dans"
-					      + "des données RDF (Groupe 4 : Rami - Amine - Ameur - Zakaria - Ania)");
+	   this.setTitle("Projet Java - Master ACSIS - 2014/2015 Recherche par mots-clÃ©s dans"
+					      + "des donnÃ©es RDF (Groupe 4 : Rami - Amine - Ameur - Zakaria - Ania)");
 	   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	   
 	   Dimension screenRes = Toolkit.getDefaultToolkit().getScreenSize();
