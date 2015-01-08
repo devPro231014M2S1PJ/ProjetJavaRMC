@@ -7,9 +7,24 @@ import projet.java.rdf.loadModel.Models;
 import projet.java.rdf.search.RdfGraph;
 import projet.java.rdf.search.SearchInIndex;
 import projet.java.rdf.search.SparqlQuiry;
-import projet.java.rdf.window.RdfWindow;
 
 public class Main {
+	public Models models;
+	public SparqlQuiry sparqlQuery;
+	public SearchInIndex searchInIndex;
+	public RdfGraph rdfGraph; /*"/home/amine/Bureau/trueDataSet"*/
+
+	public Main(String pathDataSet,String pathIndex){
+		
+		   this.models=new Models(pathDataSet);
+		   new Indexation(models,pathIndex);
+		   this.sparqlQuery=new SparqlQuiry(models);
+		   //sparqlQuiry.search("actor amine actor aziz ");
+
+		   this.searchInIndex=new SearchInIndex(pathIndex);
+		   this.rdfGraph=new RdfGraph(models.getAllStingModels(true));
+		 
+	}
 
 /***********************************************************************************************************/
 	
@@ -23,33 +38,14 @@ public class Main {
     
 	public static boolean compare(String s1,String s2){
     	
-   	   if(s1.length()!=s2.length()) return (false);
-   	 
-   	   else {
-   		 
-   		  for(int i=0;i<s2.length();i++) if(s1.charAt(i)!=s2.charAt(i)) return false;
-   		 
+   	   if(s1.length()!=s2.length()) 
+   		   return (false);
+   	   else { 
+   		  for(int i=0;i<s2.length();i++) 
+   			  if(s1.charAt(i)!=s2.charAt(i)) return false;
    		  return true;
-   	 }
-   	 
+   	   }
     } 
 /**************************************************************************************************************/
     
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-		
-	   Models models=new Models("C:\\jeux_de_donnes");
-	   new Indexation(models,"C:\\index_test_f");
-	   SparqlQuiry sparqlQuiry=new SparqlQuiry(models);
-	   //sparqlQuiry.search("actor amine actor aziz ");
-	   sparqlQuiry.test();
-
-	   SearchInIndex searchInIndex=new SearchInIndex("C:\\index_test_f");
-	   RdfGraph rdfGraph=new RdfGraph(models.getAllStingModels(true));
-	   new RdfWindow(searchInIndex,models,rdfGraph);
-       	}
-	
-	
 }

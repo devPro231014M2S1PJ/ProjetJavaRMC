@@ -4,11 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 
-import projet.java.rdf.search.RdfGraph;
-import projet.java.rdf.search.SearchInIndex;
+import projet.java.rdf.main.Main;
 
 
 public class SearchListener implements ActionListener{
@@ -16,40 +18,34 @@ public class SearchListener implements ActionListener{
 	 private JButtonFactory buttSearch;
 	 private JTextField zoneSearch;
 	 private DefaultTableModel arrayOfData;
-	 private SearchInIndex searchInIndex;
-	 private RdfGraph rdfGraph;
+	 //private SearchInIndex searchInIndex;
+	// private RdfGraph rdfGraph;
+	 private JTextArea jTextArea;
+	 private Main main;
 	
 /*******************************************************************************************************/	 
-	 public SearchListener(JButtonFactory buttSearch, JTextField zoneSearch,
-			               SearchInIndex searchInIndex, DefaultTableModel arrayOfData,RdfGraph rdfGraph)  {
+	 public SearchListener(JButtonFactory buttSearch, JTextField zoneSearch,JTextArea jTextArea,
+			               Main main, DefaultTableModel arrayOfData)  {
 		// TODO Auto-generated constructor stub
 		this.buttSearch=buttSearch;
-		this.searchInIndex=searchInIndex;
+		this.main=main;
 		this.zoneSearch=zoneSearch;
 		this.arrayOfData=arrayOfData;
 		this.buttSearch.addActionListener(this);
-		this.rdfGraph=rdfGraph;
+		this.jTextArea=jTextArea;
 	 }
 	
 /*******************************************************************************************************/
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		String quiry=this.zoneSearch.getText();
-		if(quiry.length()>2){
-		ArrayList<String> results=this.searchInIndex.searchInIndex(quiry,"class","sujet",20);
-		this.putResultOfSearch(results);
-		try{
-		    this.rdfGraph.searchTreatment(results);
-		}catch(IndexOutOfBoundsException e){
-			System.out.println("aucun resultat");
-			
-		}
-		
-		}
+		//actor vampire
+	  ArrayList<String> result=main.searchInIndex.searchManager(zoneSearch.getText());
+	  main.rdfGraph.searchTreatment(result);
+      jTextArea.setText(main.sparqlQuery.getResult(result));
 		
 	}
 /******************************************************************************************************/
 	
+	@SuppressWarnings("unused")
 	private void putResultOfSearch(ArrayList<String> results){
 		
 		 int lenght=this.arrayOfData.getRowCount(); 

@@ -22,7 +22,7 @@ public class SearchInIndex {
 	
 	private IndexSearcher indexSearcher;
 
-	
+/****************************************************************************************************/	
 	public SearchInIndex(String pathOfIndexDerectory){
 		
 		Directory directory;
@@ -37,11 +37,61 @@ public class SearchInIndex {
 			e.printStackTrace();
 		}
 
-		
 	}
+/*************************************************************************************************************/
+	
+	 public ArrayList<String>  searchManager(String Query){
+		  int j=0;
+		  boolean lastIsClass=true;
+		  ArrayList<String> responce=new ArrayList<String>();
+		  String[] subWordQuery=Main.quiryParse(Query, " ");
+		  
+		  for(int i=0;i<subWordQuery.length;i++){
+			  String result=this.getIfClass(subWordQuery[i]);
+			  if(result!="*"){
+				  responce.add(result); 
+				  j++; 
+				  lastIsClass=true;
+			   }else{
+				   if(lastIsClass){
+					   responce.add(subWordQuery[i]); 
+					   lastIsClass=false;
+					  }else{
+				       responce.set(j, responce.get(j)+" "+subWordQuery[i]);
+					  }  
+				   }
+		 }
+			 
+         for(int i=0;i<responce.size();i++){
+        	try{
+        		if(!responce.get(i).substring(0,4).equals("http")) 
+        			responce.set(i,this.getIfLitteral(responce.get(i)));
+        		
+        	}catch(StringIndexOutOfBoundsException e){
+        		responce.set(i,this.getIfLitteral(responce.get(i)));
+        	}    
+         }
+         
+        return responce;
+         
+		 
+	 }
+	 
+	 private String getIfClass(String subWord){
+		 ArrayList<String> result=this.searchInIndex(subWord, "class", "sujet", 1);
+		 if(result.size()!=0) return result.get(0);else return"*";
+		 
+	 }
+	 
+	 private String getIfLitteral(String subWord){
+		 ArrayList<String> result=this.searchInIndex(subWord, "literals", "sujet", 1);
+		 if(result.size()!=0) return result.get(0);else return"*";
+	 }
+/***************************************************************************************************************/
 	/* * @throws IOException 
 	 * 
-	 * @throws ParseException *******************************************************************************************************/
+	 * @throws ParseException *********
+	 * **********************************************************************************************/
 	    public   final  ArrayList<String> searchInIndex(String quiry,String InField,String outField,int nResult) {
 	    	
 	    	ArrayList<String> result=new ArrayList<String>();
@@ -80,15 +130,6 @@ public class SearchInIndex {
 			
 	    }
 	    
-	 public void  searchManager(String Query){
-		 String[] subWordQuery=Main.quiryParse(Query, " ");
-		 
-	 }
-	 
-	 
-	 private String getIfClass(String subWord){
-		 this.searchInIndex(subWord, "class", "sujet", 1);
-		 return"";
-	 }
+
 
 }

@@ -16,13 +16,15 @@ import com.hp.hpl.jena.util.FileManager;
 public class Models{
 	
 	private LinkedList<Model> Models;
+	private Model globalModel;
 	private int indexToDisplay=0;
 
 /*****************************************************************************************************************/
 	 public Models(String path){
 		
 		this.Models=new LinkedList<Model>();
-		this.LoadModels(path);	
+		this.LoadModels(path);
+		this.createGlobalModel();
 	 }
 
 /***************************************************************************************************************/
@@ -55,8 +57,18 @@ public class Models{
 	   }
      }
 	
+	 
+/*************************************************************************************************************************/
+	 private void createGlobalModel(){
+		 
+		for(int i=0;i<Models.size();i++ ){
+			if(i==0)this.globalModel=Models.get(i);
+			else this.globalModel.add(Models.get(i));
+		} 
+		 
+	 }
 /*************************************************************************************************************************/	
-    
+   
 	 public ArrayList<String[]> current(){
 	  
 	    ArrayList<String[]> triples=new ArrayList<String[]>();
@@ -98,7 +110,6 @@ public class Models{
 	 }
     
 /************************************************************************************************************************/
-	
 /************************************************************************************************************************/
 	
 	 private ArrayList<String[]> getModel(int index,boolean isToDisplay,boolean isToBuildGraph){
@@ -168,12 +179,13 @@ public class Models{
 /******************************************************************************************************************/	
 	 
      public LinkedList<Model> getModels(){
-		return this.Models;
+		
+    	 return this.Models;
 		
 	 }
 /********************************************************************************************************************/	 
 
-
+   public Model getGlobalModel(){return this.globalModel;}
      
 /************************************************************************************************************************/
 }

@@ -78,7 +78,7 @@ public class RdfGraph {
         
         //nodes.get(0).addAttribute("ui.label", nodes.get(0));
         //nodes.get(1).addAttribute("ui.label", nodes.get(1));
-        this.dijkstraOnGraph.setSource(nodes.get(0));
+        this.dijkstraOnGraph.setSource(nodes.get(1));
         this.dijkstraOnGraph.compute();
         try {
         	this.createSubGraph(nodes);
