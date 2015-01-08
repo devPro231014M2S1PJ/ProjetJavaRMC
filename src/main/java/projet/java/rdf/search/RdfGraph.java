@@ -15,25 +15,29 @@ import org.graphstream.ui.swingViewer.Viewer.ThreadingModel;
 
 public class RdfGraph {
 	
-   private Graph graph;
-   private Graph subGraph;
-   private Dijkstra dijkstraOnGraph;
+   private Graph graph; // graph global
+   private Graph subGraph; // arbre des ressource trouvé par l'index
+   // les objet pour executé des algorithme sur les graph
+   private Dijkstra dijkstraOnGraph; 
    private Dijkstra dijkstraOnSubGraph;
    private int countEdge=0;
    
 /**************************************************************************************/
     
    public RdfGraph(ArrayList<ArrayList<String[]>> sModels){
+	   
     	this.graph=new MultiGraph("RdfGraph");
     	this.subGraph=new MultiGraph("sousGraph");
+    	
     	this.buildGraph(sModels);
+    	
     	this.dijkstraOnGraph=new Dijkstra(Dijkstra.Element.EDGE, null, null);
     	this.dijkstraOnGraph.init(this.graph);
     	this.dijkstraOnSubGraph=new Dijkstra(Dijkstra.Element.EDGE, null, null);
     	this.dijkstraOnSubGraph.init(this.subGraph);
     }
 /****************************************************************************************/
-   
+   // creation du graphe globale
     private final void buildGraph(ArrayList<ArrayList<String[]>> sModels){
        
     	for(ArrayList<String[]> sModel:sModels){
@@ -59,7 +63,7 @@ public class RdfGraph {
     }
 /********************************************************************************************************/   
 /*************************************************************************************************************/    
-    
+    // recupération de la vue de graph "appeler par la fenetre d'afficharge" 
     public View getGraphView(boolean isSubGraph){
     	Graph lGraph=(isSubGraph)?this.subGraph:this.graph;
     	Viewer viewer=new Viewer(lGraph, ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
@@ -68,7 +72,7 @@ public class RdfGraph {
     }
     
 /************************************************************************************************************/ 
-    
+    // aprés declenchament de  la rechéche  coloriation des ressource trouvé et creation de l'arbre minimal
     public void searchTreatment(ArrayList<String> results) throws IndexOutOfBoundsException{
         ArrayList<Node> nodes=this.linkResources(results);
         for(Node node:nodes){
@@ -86,7 +90,7 @@ public class RdfGraph {
       
     }
 /**************************************************************************************************************/    
-    
+    // creation de l'arbre de recherche
     private void createSubGraph(ArrayList<Node> nodes){
   
             for(Node node:nodes){

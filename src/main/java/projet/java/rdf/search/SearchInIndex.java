@@ -22,7 +22,8 @@ public class SearchInIndex {
 	
 	private IndexSearcher indexSearcher;
 
-/****************************************************************************************************/	
+/****************************************************************************************************/
+	// recherhce dand l'index
 	public SearchInIndex(String pathOfIndexDerectory){
 		
 		Directory directory;
@@ -39,7 +40,7 @@ public class SearchInIndex {
 
 	}
 /*************************************************************************************************************/
-	
+	// decoupage de la requté d'enté en mot puis regroupement en fonction des class et predict trouvé
 	 public ArrayList<String>  searchManager(String Query){
 		  int j=0;
 		  boolean lastIsClass=true;
@@ -76,13 +77,13 @@ public class SearchInIndex {
          
 		 
 	 }
-	 
+	 // chercher si un mot correspond a une class 
 	 private String getIfClass(String subWord){
 		 ArrayList<String> result=this.searchInIndex(subWord, "class", "sujet", 1);
 		 if(result.size()!=0) return result.get(0);else return"*";
 		 
 	 }
-	 
+	 //chercher si un groupe de mot correspond a un litteral
 	 private String getIfLitteral(String subWord){
 		 ArrayList<String> result=this.searchInIndex(subWord, "literals", "sujet", 1);
 		 if(result.size()!=0) return result.get(0);else return"*";
@@ -92,6 +93,8 @@ public class SearchInIndex {
 	 * 
 	 * @throws ParseException *********
 	 * **********************************************************************************************/
+	 
+	 // fonction search dans l'index "prend en parametre des mot clé le champ dans lequel chercher et le champ a retourner"
 	    public   final  ArrayList<String> searchInIndex(String quiry,String InField,String outField,int nResult) {
 	    	
 	    	ArrayList<String> result=new ArrayList<String>();

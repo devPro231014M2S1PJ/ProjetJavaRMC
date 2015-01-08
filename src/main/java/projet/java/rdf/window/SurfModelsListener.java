@@ -8,7 +8,7 @@ import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 import projet.java.rdf.loadModel.Models;
-
+// cette class reagie au evenement pour le parcour des donné rdf
 public class SurfModelsListener implements ActionListener{
 /********************************************************************************************************************/
 	private JButtonFactory buttPrecedent,buttSuivant;
@@ -40,7 +40,7 @@ public class SurfModelsListener implements ActionListener{
 	}
 
 /****************************************************************************************************************/
-	
+	// mettre les donne dans le "DefaultTableModel" pour etre afficher
 	private void putTriplet(ArrayList<String[]> triplets){
 		String[] triplet;
 	   int lenght=this.arrayOfData.getRowCount(); 

@@ -13,8 +13,10 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.LiteralRequiredException;
 
 public class SparqlQuiry {
-	
+	// requete sparql
   private Models models;
+  
+  //le prefix utiliser dans les requete
   private final String prefix=
 		     "prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
 		     +"prefix dbpedia:<http://dbpedia.org/property/>"
@@ -35,6 +37,7 @@ public class SparqlQuiry {
 	this.models=models;
   }
   
+  // interogation du model avel les ressource trouvé dans l'index
   public String getResult(ArrayList<String> result){
 	  String s="";
    //   String s="http://data.linkedmdb.org/resource/film/1";

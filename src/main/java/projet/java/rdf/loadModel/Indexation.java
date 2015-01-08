@@ -11,21 +11,22 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import projet.java.rdf.main.Main;
-
 
 public class Indexation {
 	
 /*********************************************************************************************/
+	// inoration a indexé
 	private ArrayList<InfoToIndex> infos_toIndex=new ArrayList<InfoToIndex>();
+	// emplacement de l index
 	private String pathOfIndexDerectory;
 /**********************************************************************************************/
 	public Indexation(Models models,String pathOfIndexDerectory){
 		
-		
+		// recuperation des ressource sous forme de chane de carctére
 		ArrayList<ArrayList<String[]>> sModels=models.getAllStingModels(false);
 		
 		this.pathOfIndexDerectory=pathOfIndexDerectory;
+		// structuration des information, toute les info concérnat une ressource sont regroupé
 		this.putInInfoToIndex(sModels);
 		this.Index();
 		
@@ -33,7 +34,9 @@ public class Indexation {
 	}
 /***********************************************************************************************/
 	
-	private void putInInfoToIndex(ArrayList<ArrayList<String[]>> sModels){
+	// organisation des information a indexé
+	
+	private final void putInInfoToIndex(ArrayList<ArrayList<String[]>> sModels){
 		
 		int position;
 		
@@ -59,11 +62,11 @@ public class Indexation {
 	}
 
 /***********************************************************************************************************/	
-	private int getIndexOfResource(String resource){
+	private final int getIndexOfResource(String resource){
 	    int i=0;
 	    
 		for(InfoToIndex iti:this.infos_toIndex){
-			if(Main.compare(iti.getResource(),resource)){
+			if(iti.getResource().equals(resource)){
 				return i;
 			}
 			i++;
@@ -71,8 +74,8 @@ public class Indexation {
 		return -1;
 	}
 /***************************************************************************************************************/
-	
-    private void Index(){
+	// indexation  des information qui on été structuré ulterieurement
+    private final void Index(){
 	    try {
 			IndexWriter iWriter=createIndex();
 			for(InfoToIndex iti:this.infos_toIndex){
@@ -85,7 +88,7 @@ public class Indexation {
 	
 	
 /*******************************************************************************************************/
-	
+	// initialisation de l'index
     private final IndexWriter createIndex() throws IOException{
     	
 			 File f=new File(this.pathOfIndexDerectory);

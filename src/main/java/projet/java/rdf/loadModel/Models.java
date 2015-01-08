@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import projet.java.rdf.main.Main;
-
 import com.hp.hpl.jena.n3.JenaURIException;
 import com.hp.hpl.jena.rdf.model.LiteralRequiredException;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -14,9 +12,11 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.util.FileManager;
 
 public class Models{
-	
+	// liste des models
 	private LinkedList<Model> Models;
+	// regroupement des model dans un seul pour l'interrogationsparql
 	private Model globalModel;
+	// l'index en cour d'affichge
 	private int indexToDisplay=0;
 
 /*****************************************************************************************************************/
@@ -28,6 +28,7 @@ public class Models{
 	 }
 
 /***************************************************************************************************************/
+	 // chargement du données
 	 private final void LoadModels(String path){
 		
 		File file=new File(path);
@@ -59,6 +60,7 @@ public class Models{
 	
 	 
 /*************************************************************************************************************************/
+	 
 	 private void createGlobalModel(){
 		 
 		for(int i=0;i<Models.size();i++ ){
@@ -69,6 +71,7 @@ public class Models{
 	 }
 /*************************************************************************************************************************/	
    
+	 // fonction pour recupéré le model e  cour pour l'affichage
 	 public ArrayList<String[]> current(){
 	  
 	    ArrayList<String[]> triples=new ArrayList<String[]>();
@@ -82,7 +85,7 @@ public class Models{
      }
 
 /*************************************************************************************************************************/
-	
+	// chargement du model suivant
      public ArrayList<String[]> next(){
 		
 		
@@ -96,7 +99,7 @@ public class Models{
     }
 
 /*************************************************************************************************************************/
-	
+	// chargement du model precedant
     public ArrayList<String[]> previous(){
 		
 		if(this.indexToDisplay!=0){
@@ -111,7 +114,7 @@ public class Models{
     
 /************************************************************************************************************************/
 /************************************************************************************************************************/
-	
+	// chargemnet du model qui a l'index "index"
 	 private ArrayList<String[]> getModel(int index,boolean isToDisplay,boolean isToBuildGraph){
 		
 	    ArrayList<String[]> triples=new ArrayList<String[]>();
@@ -141,7 +144,7 @@ public class Models{
 			             
 					      sLitOrResc=statement.getResource().getURI();
 			      else{   
-			    	      if(Main.compare(sPred,"type") ){
+			    	      if(sPred.equals("type") ){
 			    	    	         
 			    	         triples.add(new String[]{statement.getResource().getURI(),"//**",
 			    	        	                         statement.getResource().getLocalName()});
@@ -161,7 +164,7 @@ public class Models{
 	}
 		
 /***********************************************************************************************************************/
-	
+	// resuperé tout le model en un seul block
     public ArrayList<ArrayList<String[]>> getAllStingModels(boolean isToBuildGraph){
 		
 		int lenght=this.Models.size();

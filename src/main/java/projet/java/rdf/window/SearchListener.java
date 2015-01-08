@@ -4,14 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 
 import projet.java.rdf.main.Main;
-
+	// tratement lancer apres un demande de recherche
 
 public class SearchListener implements ActionListener{
 	 
@@ -38,14 +36,17 @@ public class SearchListener implements ActionListener{
 /*******************************************************************************************************/
 	public void actionPerformed(ActionEvent arg0) {
 		//actor vampire
+		// decoupage est recupérationde sinfo correspondante dans l'index
 	  ArrayList<String> result=main.searchInIndex.searchManager(zoneSearch.getText());
+	   // detection des ressource dans le graph et creation de l'arblre minimal
 	  main.rdfGraph.searchTreatment(result);
+	  // affichge des resultat de la rechrche sparql
       jTextArea.setText(main.sparqlQuery.getResult(result));
 		
 	}
 /******************************************************************************************************/
 	
-	@SuppressWarnings("unused")
+/*	@SuppressWarnings("unused")
 	private void putResultOfSearch(ArrayList<String> results){
 		
 		 int lenght=this.arrayOfData.getRowCount(); 
@@ -54,6 +55,6 @@ public class SearchListener implements ActionListener{
 	     for(String sResult:results){
 	    	 this.arrayOfData.addRow(new Object[]{sResult});
 	     }
-	}
+	}*/
 /**********************************************************************************************************/
 }

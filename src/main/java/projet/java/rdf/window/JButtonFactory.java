@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
+
 public class JButtonFactory extends JButton{
 /**************************************************************************************************/	
 	public JButtonFactory(String buttonName, Color fontCouleur, 

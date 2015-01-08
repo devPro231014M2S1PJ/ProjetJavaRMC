@@ -4,16 +4,16 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
 
-import projet.java.rdf.main.Main;
+// agregation des information qui conserne la méme ressource
 
 public class InfoToIndex {
 	
 /***********************************************************************************************************/
 	
-	private String sResource;
-	private String literalConcatination;
-	private String predicatConcatination;
-	private String classes;
+	private String sResource;  // la ressource
+	private String literalConcatination; // concatenation des litteral 
+	private String predicatConcatination; // concatenationdes des predicat
+	private String classes; // nom de la class 
 	
 
 	
@@ -31,7 +31,7 @@ public class InfoToIndex {
 /************************************************************************************************************/
 	
 	public void addInInfoToindex(String sPredicat,String sLiteral){
-		   if(Main.compare(sPredicat,"//**")){
+		   if(sPredicat.equals("//**")){
 			   this.classes=" "+sLiteral;
 		   }else{
 		    this.predicatConcatination+=" "+sPredicat;
@@ -40,7 +40,7 @@ public class InfoToIndex {
 	}
 	
 /************************************************************************************************************/
-	
+	// indexation des info d'une meme ressource dans le méme document lucen
 	public Document indexInfo(){
 		
 		Document document = new Document();
